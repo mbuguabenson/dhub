@@ -49,14 +49,18 @@
         margin: 0 0.6em;
         text-align: center;
         position: relative;
-        transition: transform 0.25s linear;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         &--latest {
             z-index: 1;
-            transform: scale(1.2);
+            transform: scale(1.22);
 
             .digits__digit-spot {
                 font-size: 0.9em;
+            }
+
+            .digits__digit-value {
+                box-shadow: 0 0 16px rgba(17, 142, 28, 0.45);
             }
         }
         &--win {
@@ -96,10 +100,13 @@
         }
         &--is-selectable {
             pointer-events: auto;
+            cursor: pointer;
 
             &:focus,
             &:active,
             &:hover {
+                transform: translateY(-2px) scale(1.08);
+
                 .digits__digit-display {
                     &-value,
                     &-percentage {
@@ -112,11 +119,14 @@
             }
         }
         &-display-value {
-            transition: transform 0.25s linear;
+            transition: transform 0.25s ease;
             position: absolute;
-            transform: scale(0.9);
-            top: 4px;
+            transform: scale(0.95);
+            top: 5px;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--color-text-primary);
+            font-style: normal;
 
             &--no-stats {
                 transform: scale(1) translateY(5px);
@@ -134,11 +144,14 @@
             }
         }
         &-display-percentage {
-            top: 20px;
+            top: 21px;
             position: absolute;
-            font-size: 0.65em;
-            font-weight: 400;
+            font-size: 0.68em;
+            font-weight: 600;
+            letter-spacing: -0.2px;
             color: var(--color-text-secondary);
+            font-style: normal;
+            transition: color 0.2s ease;
 
             @include mobile {
                 top: 25px;
@@ -149,21 +162,27 @@
         }
         &-value {
             @include typeface(--paragraph-center-bold-black);
-            width: 40px;
-            height: 40px;
-            background-color: var(--color-surface-primary);
+            width: 42px;
+            height: 42px;
+            background: var(--color-surface-primary);
             color: var(--color-text-primary);
             margin-bottom: 0.5em;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(128, 128, 128, 0.15);
             transition:
                 background-color 0.2s ease-out,
+                box-shadow 0.2s ease-out,
+                border-color 0.2s ease-out,
                 transform 0.1s ease-out;
 
             &--selected {
                 background-color: var(--color-surface-primary);
+                border-color: var(--brand-primary, #118e1c);
+                box-shadow: 0 0 12px rgba(17, 142, 28, 0.35);
             }
             &--win {
                 background-color: var(--color-text-success);
@@ -320,24 +339,32 @@
     }
     &__pie-progress {
         transform: rotate(-90deg);
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
 
         /* postcss-bem-linter: ignore */
         .progress__bg {
-            stroke: var(--color-interactive-disabled);
+            stroke: var(--color-interactive-disabled, #e8eefc);
+            opacity: 0.35;
         }
         /* postcss-bem-linter: ignore */
         .progress__value {
             stroke: var(--color-text-secondary);
+            transition: stroke 0.3s ease, stroke-dasharray 0.3s ease;
 
             /* postcss-bem-linter: ignore */
             &--is-max {
-                stroke: var(--color-text-success);
+                stroke: #10B981;
+                filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
             }
             /* postcss-bem-linter: ignore */
             &--is-min {
-                stroke: var(--color-text-danger);
+                stroke: #EF4444;
+                filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4));
+            }
+            /* postcss-bem-linter: ignore */
+            &--is-selected {
+                stroke: var(--brand-primary, #3B82F6);
             }
         }
         @include mobile-screen {
@@ -350,7 +377,7 @@
         position: absolute;
         bottom: -12px;
         padding: 0 12px;
-        transition: transform 0.25s ease;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         @include mobile-screen {
             left: -2px;
