@@ -23,6 +23,8 @@ import { useSmartChartsAdapter } from 'Modules/SmartChart/Hooks/useSmartChartsAd
 import { CHART_CONSTANTS, getMarketsOrder } from 'Modules/SmartChart/Utils/chart-utils';
 import { useTraderStore } from 'Stores/useTraderStores';
 
+import Digits from 'Modules/Contract/Components/Digits';
+
 type TickSpotData = NonNullable<TTicksStreamResponse['tick']>;
 
 type TBottomWidgetsParams = {
@@ -30,10 +32,21 @@ type TBottomWidgetsParams = {
     tick: TickSpotData | null;
 };
 
-const BottomWidgetsMobile = observer(({ digits, tick }: TBottomWidgetsParams) => {
-    const { setDigitStats, setTickData } = useTraderStore();
+const BottomWidgets = observer(({ digits, tick }: TBottomWidgetsParams) => {
+    const {
+        contract_type,
+        last_digit,
+        onChange,
+        setDigitStats,
+        setTickData,
+        show_digits_stats,
+        symbol,
+    } = useTraderStore();
+    const { contract_replay } = useStore();
+    const digits_info = contract_replay?.contract_store?.digits_info || {};
+    const { isMobile } = useDevice();
 
-    // Using bottom widgets in V2 to get tick data for all trade types and to get digit stats for Digit trade types
+    // Using bottom widgets to get tick data for all trade types and digit stats for Digit trade types
     React.useEffect(() => {
         setTickData(tick);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,13 +54,28 @@ const BottomWidgetsMobile = observer(({ digits, tick }: TBottomWidgetsParams) =>
 
     React.useEffect(() => {
         setDigitStats(digits);
-        // For digits array, which is coming from SmartChart, reference is not always changing.
-        // As it is the same, this useEffect was not triggered on every array update.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [digits.join('-')]);
+    }, [digits?.join('-')]);
 
-    // render no bottom widgets on chart
-    return null;
+    if (!show_digits_stats || isMobile) return null;
+
+    return (
+        <div className='bottom-widgets'>
+            <Digits
+                is_trade_page
+                is_digit_contract
+                is_mobile={false}
+                contract_info={{}}
+                digits_array={digits}
+                digits_info={digits_info || {}}
+                tick={tick}
+                underlying={symbol}
+                trade_type={contract_type}
+                selected_digit={last_digit}
+                onDigitChange={onChange}
+            />
+        </div>
+    );
 });
 
 const TradeChart = observer(() => {
@@ -234,7 +262,7 @@ const TradeChart = observer(() => {
                 ref={ref}
                 barriers={barriers}
                 contracts_array={markers_array}
-                bottomWidgets={BottomWidgetsMobile}
+                bottomWidgets={BottomWidgets}
                 showLastDigitStats
                 chartControlsWidgets={null}
                 chartStatusListener={(v: boolean) => setChartStatus(!v, true)}
