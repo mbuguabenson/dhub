@@ -133,18 +133,19 @@ export class TradeExecutionService {
 
         try {
             // 1. Request Proposal
+            const requires_barrier = ['DIGITUNDER', 'DIGITOVER', 'DIGITMATCH', 'DIGITDIFF'].includes(active_contract_type);
             const proposal_req: any = {
                 proposal: 1,
                 amount: stake_amount,
                 basis: 'stake',
                 currency: this.config.currency || 'USD',
-                symbol: active_symbol,
+                underlying_symbol: active_symbol,
                 duration: this.config.duration || 1,
                 duration_unit: 't',
                 contract_type: active_contract_type,
             };
 
-            if (active_barrier !== undefined && active_barrier !== null && active_barrier !== '') {
+            if (requires_barrier && active_barrier !== undefined && active_barrier !== null && active_barrier !== '') {
                 proposal_req.barrier = String(active_barrier);
             }
 
