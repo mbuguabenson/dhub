@@ -9,6 +9,7 @@ import ContractDetailsSwitch from './ContractDetailsSwitch';
 // Lazy load route components for better code splitting
 const Trade = lazy(() => import(/* webpackChunkName: "trader-trade" */ 'AppV2/Containers/Trade'));
 const Positions = lazy(() => import(/* webpackChunkName: "trader-positions" */ 'AppV2/Containers/Positions'));
+const AutoTrader = lazy(() => import(/* webpackChunkName: "trader-autotrader" */ 'Modules/AutoTrader'));
 
 type TRouteConfigExtended = Omit<TRouteConfig, 'routes'> & {
     path: string;
@@ -20,6 +21,12 @@ const traderRoutes: TRouteConfigExtended[] = [
     {
         path: routes.index,
         component: Trade,
+        exact: true,
+        default: false,
+    },
+    {
+        path: routes.autotrader,
+        component: AutoTrader,
         exact: true,
         default: false,
     },

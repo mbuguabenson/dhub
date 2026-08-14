@@ -1,0 +1,829 @@
+.autotrader-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 56px);
+    padding: 1.6rem 2.4rem;
+    background: var(--color-surface-base, #0e1117);
+    color: var(--color-text-primary, #f1f5f9);
+    gap: 1.6rem;
+    box-sizing: border-box;
+
+    @include mobile-screen {
+        padding: 1.2rem 0.8rem 6rem;
+        gap: 1.2rem;
+    }
+}
+
+.autotrader-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--color-surface-border, rgba(255, 255, 255, 0.08));
+
+    &__title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #10b981, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__subtitle {
+        font-size: 1.2rem;
+        color: var(--color-text-secondary, #94a3b8);
+    }
+}
+
+.autotrader-nav-tabs {
+    display: flex;
+    gap: 0.8rem;
+    background: var(--color-surface-card, rgba(255, 255, 255, 0.04));
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--color-surface-border, rgba(255, 255, 255, 0.08));
+
+    &__btn {
+        padding: 0.8rem 1.6rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        color: var(--color-text-secondary, #94a3b8);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: #ffffff;
+        }
+
+        &.active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+        }
+    }
+}
+
+.autotrader-layout-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.6rem;
+    width: 100%;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.autotrader-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.autotrader-card {
+    background: var(--color-surface-card, rgba(30, 41, 59, 0.6));
+    border: 1px solid var(--color-surface-border, rgba(255, 255, 255, 0.08));
+    border-radius: 14px;
+    padding: 1.6rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(12px);
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.2rem;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+    }
+
+    &__sub {
+        font-size: 1.15rem;
+        color: var(--color-text-secondary, #94a3b8);
+    }
+
+    &__badge {
+        font-size: 1.1rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        background: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+        font-weight: 600;
+    }
+}
+
+/* Market Selector Bar */
+.autotrader-market-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__label {
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+    }
+}
+
+/* Seven Digits Grid */
+.autotrader-seven-digits {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.8rem;
+
+        @include mobile-screen {
+            gap: 0.4rem;
+        }
+    }
+}
+
+.autotrader-digit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 0.4rem;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &__tick-label {
+        font-size: 1rem;
+        color: #94a3b8;
+        font-weight: 600;
+    }
+
+    &__number {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin: 0.4rem 0;
+    }
+
+    &__tags {
+        display: flex;
+        gap: 4px;
+    }
+
+    &--latest {
+        border-color: #3b82f6;
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
+        transform: scale(1.08);
+
+        .autotrader-digit-card__number {
+            color: #60a5fa;
+        }
+    }
+
+    &--hot {
+        border-color: #10b981;
+        .autotrader-digit-card__number {
+            color: #10b981;
+        }
+    }
+
+    &--cold {
+        border-color: #ef4444;
+        .autotrader-digit-card__number {
+            color: #ef4444;
+        }
+    }
+}
+
+.autotrader-tag {
+    font-size: 0.95rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 700;
+
+    &--under {
+        background: rgba(6, 182, 212, 0.2);
+        color: #06b6d4;
+    }
+    &--over {
+        background: rgba(168, 85, 247, 0.2);
+        color: #a855f7;
+    }
+    &--even {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+    }
+    &--odd {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+    }
+}
+
+/* Line Graph */
+.autotrader-line-graph {
+    &__canvas-wrapper {
+        width: 100%;
+        height: 140px;
+    }
+
+    &__svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+}
+
+/* Distribution Gauges Grid */
+.autotrader-distribution {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 0.6rem;
+
+        @include mobile-screen {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+        }
+    }
+}
+
+.autotrader-gauge-bubble {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.4rem;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &__ring-container {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__digit {
+        font-weight: 800;
+        font-size: 1.4rem;
+    }
+
+    &__pct {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #94a3b8;
+
+        &--max {
+            color: #10b981 !important;
+            font-weight: 800;
+        }
+        &--min {
+            color: #ef4444 !important;
+            font-weight: 800;
+        }
+    }
+
+    &--active {
+        .autotrader-gauge-bubble__ring-container {
+            border-radius: 50%;
+            box-shadow: 0 0 14px rgba(59, 130, 246, 0.5);
+        }
+        .autotrader-gauge-bubble__digit {
+            color: #3b82f6;
+        }
+    }
+}
+
+/* Power Meter Progress Bars */
+.autotrader-power-meter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+
+    @include mobile-screen {
+        grid-template-columns: 1fr;
+    }
+
+    &__side {
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 1.2rem;
+        transition: all 0.3s ease;
+
+        &--glowing {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+        }
+
+        &--super-glowing {
+            border-color: #10b981;
+            box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.8rem;
+    }
+
+    &__label {
+        font-weight: 700;
+        font-size: 1.3rem;
+    }
+
+    &__val {
+        font-weight: 800;
+        font-size: 1.8rem;
+    }
+
+    &__bar-track {
+        height: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    &__bar-fill {
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.4s ease;
+
+        &--under {
+            background: linear-gradient(90deg, #06b6d4, #10b981);
+        }
+        &--over {
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+        }
+        &--even {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        &--odd {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.8rem;
+        font-size: 1.15rem;
+        color: #94a3b8;
+    }
+}
+
+/* Strategy Tabs */
+.autotrader-tabs {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+
+    &__item {
+        padding: 0.7rem 1.4rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(30, 41, 59, 0.4);
+        color: #94a3b8;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &--active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.35);
+        }
+    }
+}
+
+/* Signal Card */
+.autotrader-signal-card {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    &--strong {
+        border-color: #10b981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__tag {
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: #10b981;
+    }
+
+    &__market {
+        font-size: 1.2rem;
+        color: #94a3b8;
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
+        @include mobile-screen {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__metric {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    &__label {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        font-weight: 600;
+    }
+
+    &__val {
+        font-size: 1.6rem;
+        font-weight: 800;
+    }
+}
+
+/* Trading Console Form Grid */
+.autotrader-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+
+    @include mobile-screen {
+        grid-template-columns: 1fr;
+    }
+}
+
+.autotrader-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #cbd5e1;
+    }
+}
+
+.autotrader-input,
+.autotrader-select {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(15, 23, 42, 0.8);
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+}
+
+.autotrader-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    &__label {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #94a3b8;
+    }
+
+    &__msg {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: #38bdf8;
+    }
+}
+
+.autotrader-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.autotrader-btn {
+    padding: 1rem 1.8rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+
+    &--primary {
+        background: #3b82f6;
+        color: #ffffff;
+        &:hover {
+            background: #2563eb;
+        }
+    }
+
+    &--success {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: #ffffff;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        &:hover {
+            filter: brightness(1.1);
+        }
+    }
+
+    &--danger {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: #ffffff;
+        box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+        &:hover {
+            filter: brightness(1.1);
+        }
+    }
+
+    &--secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        &:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+    }
+
+    &--block {
+        width: 100%;
+    }
+}
+
+/* Ledger Summary */
+.autotrader-ledger-summary {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mobile-screen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.autotrader-summary-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    &__label {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        font-weight: 600;
+    }
+
+    &__val {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-top: 0.3rem;
+
+        &--bold {
+            font-size: 2.2rem;
+        }
+    }
+}
+
+/* Table */
+.autotrader-table-wrapper {
+    overflow-x: auto;
+    max-height: 320px;
+}
+
+.autotrader-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.25rem;
+
+    th {
+        padding: 0.8rem 1rem;
+        text-align: left;
+        color: #94a3b8;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-weight: 600;
+    }
+
+    td {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+}
+
+.autotrader-badge {
+    padding: 0.25rem 0.8rem;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 800;
+
+    &--won, &--safe {
+        background: rgba(16, 185, 129, 0.18);
+        color: #10b981;
+    }
+    &--lost, &--choppy {
+        background: rgba(239, 68, 68, 0.18);
+        color: #ef4444;
+    }
+    &--pending {
+        background: rgba(59, 130, 246, 0.18);
+        color: #3b82f6;
+    }
+}
+
+/* 24H Bot Specific Styles */
+.autotrader-market-power-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.8rem;
+
+        @include mobile-screen {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+.autotrader-radar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 0.4rem;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    &__name {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    &__power {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #38bdf8;
+        margin: 0.2rem 0;
+    }
+
+    &--safe {
+        border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    &--active {
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        border-color: #3b82f6;
+    }
+}
+
+.autotrader-presets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @include mobile-screen {
+        grid-template-columns: 1fr;
+    }
+}
+
+.autotrader-preset-btn {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(15, 23, 42, 0.6);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+
+    &__title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #ffffff;
+    }
+
+    &__sub {
+        font-size: 1.15rem;
+        color: #94a3b8;
+        margin-top: 0.3rem;
+    }
+
+    &:hover {
+        border-color: #3b82f6;
+    }
+
+    &--selected {
+        background: rgba(59, 130, 246, 0.15);
+        border-color: #3b82f6;
+        box-shadow: 0 0 14px rgba(59, 130, 246, 0.3);
+    }
+}
+
+.autotrader-pct-buttons {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.autotrader-pct-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.6);
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &.active {
+        background: #10b981;
+        color: #ffffff;
+        border-color: #10b981;
+    }
+}
+
+/* Helpers */
+.text-emerald { color: #10b981 !important; }
+.text-red { color: #ef4444 !important; }
+.text-cyan { color: #06b6d4 !important; }
+.text-purple { color: #a855f7 !important; }
+.font-bold { font-weight: 800 !important; }
+.text-center { text-align: center; }
+.py-4 { padding-top: 1.6rem; padding-bottom: 1.6rem; }
+.text-secondary { color: #94a3b8; }
+.mt-4 { margin-top: 1.6rem; }
