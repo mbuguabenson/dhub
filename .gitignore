@@ -22,7 +22,9 @@ packages/appstore/lib/
 packages/appstore/.out
 packages/wallets/src/translations/messages.json
 .env
-.env.*
+.env.local
+.env.*.local
+!.env.example
 *.env
 .nx
 packages/*/stats.json
