@@ -31,7 +31,7 @@
         "oauth_app_id": "3471Uhtmc4syx3gIjCOwZ"
     },
     "derivws": {
-        "staging": "https://staging-api.derivws.com",
+        "staging": "https://api.derivws.com",
         "production": "https://api.derivws.com"
     },
     "api_core": {
