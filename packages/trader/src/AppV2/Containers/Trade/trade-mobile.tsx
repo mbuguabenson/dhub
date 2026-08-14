@@ -19,6 +19,7 @@ import useDefaultSymbol from 'AppV2/Hooks/useDefaultSymbol';
 import { getChartHeight } from 'AppV2/Utils/layout-utils';
 import { getDisplayedContractTypes } from 'AppV2/Utils/trade-types-utils';
 import { isDigitTradeType } from 'AppV2/Utils/digits';
+import LastDigitPrediction from 'AppV2/Components/TradeParameters/LastDigitPrediction';
 import { useTraderStore } from 'Stores/useTraderStores';
 
 import { TradeChart } from '../Chart';
@@ -125,6 +126,11 @@ const Trade = observer(() => {
                             <Guide show_guide_for_selected_contract />
                         </div>
                         {isDigitTradeType(contract_type) && <CurrentSpot />}
+                        {isDigitTradeType(contract_type) && (
+                            <div className='trade__mobile-digit-stats' style={{ padding: '0 8px', margin: '4px 0' }}>
+                                <LastDigitPrediction is_minimized={false} />
+                            </div>
+                        )}
                         <div className='trade__chart-tooltip'>
                             <section
                                 className={clsx('trade__chart', { 'trade__chart--with-borderRadius': !is_accumulator })}
