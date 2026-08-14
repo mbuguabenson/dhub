@@ -132,6 +132,7 @@ const plugins = ({ base, is_test_env }) => {
         new DefinePlugin({
             'process.env.REF_NAME': JSON.stringify(process.env.REF_NAME),
             'process.env.TRANSLATIONS_CDN_URL': JSON.stringify(process.env.TRANSLATIONS_CDN_URL || ''),
+            'process.env.OAUTH_CLIENT_ID': JSON.stringify(process.env.OAUTH_CLIENT_ID || '3471Uhtmc4syx3gIjCOwZ'),
         }),
         new CleanWebpackPlugin(),
         new CopyPlugin(copyConfig(base)),
