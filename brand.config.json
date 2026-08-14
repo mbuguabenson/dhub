@@ -2,32 +2,32 @@
     "brand_name": "dtraderHub",
     "brand_logo": "brand/platform-logo.svg",
     "brand_logo_dark": "brand/platform-logo.svg",
-    "brand_domain": "dtraderhub.vercel.app",
+    "brand_domain": "dtraderhub-mu.vercel.app",
     "brand_hostname": {
-        "staging": "dtraderhub.vercel.app",
-        "production": "dtraderhub.vercel.app"
+        "staging": "dtraderhub-mu.vercel.app",
+        "production": "dtraderhub-mu.vercel.app"
     },
     "platform": {
         "name": "dtraderHub",
         "description": "A whole new trading experience on a powerful yet easy to use platform.",
         "logo": "brand/platform-logo.svg",
-        "home_url": "https://dtraderhub.vercel.app",
-        "help_centre_url": "https://dtraderhub.vercel.app/help-centre"
+        "home_url": "https://dtraderhub-mu.vercel.app",
+        "help_centre_url": "https://dtraderhub-mu.vercel.app/help-centre"
     },
     "signup_url": {
-        "production": "https://dtraderhub.vercel.app/signup",
-        "staging": "https://dtraderhub.vercel.app/signup"
+        "production": "https://dtraderhub-mu.vercel.app/signup",
+        "staging": "https://dtraderhub-mu.vercel.app/signup"
     },
     "deposit_url": {
-        "staging": "https://dtraderhub.vercel.app/transfer",
-        "production": "https://dtraderhub.vercel.app/transfer"
+        "staging": "https://dtraderhub-mu.vercel.app/transfer",
+        "production": "https://dtraderhub-mu.vercel.app/transfer"
     },
     "auth": {
         "staging": "https://staging-auth.deriv.com",
         "production": "https://auth.deriv.com",
         "oauth_scopes": ["trade", "account_manage"],
-        "oauth_redirect_uri_staging": "https://dtraderhub.vercel.app",
-        "oauth_redirect_uri_production": "https://dtraderhub.vercel.app",
+        "oauth_redirect_uri_staging": "https://dtraderhub-mu.vercel.app",
+        "oauth_redirect_uri_production": "https://dtraderhub-mu.vercel.app",
         "oauth_app_id": "3471Uhtmc4syx3gIjCOwZ"
     },
     "derivws": {
