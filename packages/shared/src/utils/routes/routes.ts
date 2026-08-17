@@ -10,6 +10,7 @@ export const routes = {
     trader_positions: '/positions',
     contract: '/contract/:contract_id',
     autotrader: '/autotrader',
+    dtrader: '/dtrader',
 
     // Reports routes
     reports: '/reports',
@@ -23,6 +24,7 @@ export const DISABLE_LANDSCAPE_BLOCKER_ROUTES = [
     routes.reports,
     routes.endpoint,
     routes.autotrader,
+    routes.dtrader,
     /** because contract route has dynamic id */
     '/contract',
 ];

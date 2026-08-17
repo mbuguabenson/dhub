@@ -49,6 +49,20 @@ const BottomNav = observer(({ className }: BottomNavProps) => {
             {
                 icon: (
                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='var(--color-text-primary)' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+                        <polyline points='22 12 18 12 15 21 9 3 6 12 2 12' />
+                    </svg>
+                ),
+                activeIcon: (
+                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='var(--brand-primary, #118e1c)' strokeWidth='2.2' strokeLinecap='round' strokeLinejoin='round'>
+                        <polyline points='22 12 18 12 15 21 9 3 6 12 2 12' />
+                    </svg>
+                ),
+                label: <Localize i18n_default_text='DTrader' />,
+                path: routes.dtrader,
+            },
+            {
+                icon: (
+                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='var(--color-text-primary)' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
                         <rect x='3' y='11' width='18' height='10' rx='2' />
                         <circle cx='12' cy='5' r='2' />
                         <path d='M12 7v4' />

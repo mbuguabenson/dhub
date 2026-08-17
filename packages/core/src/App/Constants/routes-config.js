@@ -67,6 +67,12 @@ const getModules = () => {
             protected: false,
         },
         {
+            path: routes.dtrader,
+            component: Trader,
+            getTitle: () => localize('DTrader'),
+            protected: false,
+        },
+        {
             path: routes.contract,
             component: Trader,
             getTitle: () => localize('Contract Details'),

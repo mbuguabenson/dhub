@@ -63,6 +63,54 @@ const MenuPage = observer(() => {
                 })}
             >
                 <div className='header__menu-mobile-body-wrapper'>
+                    {/* Trading Platforms Section */}
+                    <div className='header__menu-section'>
+                        <div className='header__menu-section-header'>
+                            <Text className='header__menu-section-title' size='xsm' weight='bold'>
+                                {localize('Trading')}
+                            </Text>
+                        </div>
+                        <div className='menu-page__item' onClick={() => history.push(routes.index)}>
+                            <MenuLink
+                                icon={
+                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+                                        <line x1='18' y1='20' x2='18' y2='10' />
+                                        <line x1='12' y1='20' x2='12' y2='4' />
+                                        <line x1='6' y1='20' x2='6' y2='14' />
+                                    </svg>
+                                }
+                                text={localize('Trade')}
+                                suffix_icon={<StandaloneChevronRightRegularIcon iconSize='sm' />}
+                            />
+                        </div>
+                        <div className='menu-page__item' onClick={() => history.push(routes.dtrader)}>
+                            <MenuLink
+                                icon={
+                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+                                        <polyline points='22 12 18 12 15 21 9 3 6 12 2 12' />
+                                    </svg>
+                                }
+                                text={localize('DTrader Terminal')}
+                                suffix_icon={<StandaloneChevronRightRegularIcon iconSize='sm' />}
+                            />
+                        </div>
+                        <div className='menu-page__item' onClick={() => history.push(routes.autotrader)}>
+                            <MenuLink
+                                icon={
+                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+                                        <rect x='3' y='11' width='18' height='10' rx='2' />
+                                        <circle cx='12' cy='5' r='2' />
+                                        <path d='M12 7v4' />
+                                        <line x1='8' y1='16' x2='8.01' y2='16' />
+                                        <line x1='16' y1='16' x2='16.01' y2='16' />
+                                    </svg>
+                                }
+                                text={localize('AutoTrader')}
+                                suffix_icon={<StandaloneChevronRightRegularIcon iconSize='sm' />}
+                            />
+                        </div>
+                    </div>
+
                     {/* [AI] Reports Section — only for logged-in users */}
                     {is_logged_in && (
                         <div className='header__menu-section'>
